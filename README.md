@@ -1,84 +1,93 @@
-# Aruba 6100 - Basic Switch Config
-===============================================
+# Aruba 6100 - Basic Switch Config Commands
+---
+
+### VLAN Reference
+
+- Native
+	- for frames that are not tagged
+ - Allowed
+	- for VLANs that are allowed over the specified trunk port (tagged or native)
+
+
+---
 
 ## Keyboard Shortcuts (putty)
-- [?] display a list of available commands for given context in detail
-- [Tab] display available commands for given context
-- [Ctrl]+[S] freeze terminal
-- [Ctrl]+[Q] unfreeze terminal
-- [Ctrl]+[A] go to beginning of input line
-- [Ctrl]+[E] go to end of input line
+- ``?`` display a list of available commands for given context in detail
+- ``Tab`` display available commands for given context
+- ``Ctrl``+``S`` freeze terminal
+- ``Ctrl``+``Q`` unfreeze terminal
+- ``Ctrl``+``A`` go to beginning of input line
+- ``Ctrl``+``E`` go to end of input line
 
------------------------------------------------
+---
 
 ## System Info/Config
 
 ## Startup Config
-context: config
+context: ``config``
 
 ### Save running-config to startup-config
-``write memory``
+```write memory```
 
 ### Reset startup-config to factory default config
-`` erase startup-config``
+```erase startup-config```
 
 ### Show current OS and BIOS info
-``show version``
+```show version```
 
 ### Change default hostname
 context: config
 
-``6100(config)# hostname <new-hostname>``
+```6100(config)# hostname <new-hostname>```
+
 Note: To be compliant with RFC 1123, the hostname must contain only letters, numbers and hyphens, and must not start or end with a hyphen.
+
+---
+
+## User Management
+context: ``config``
+
+### Change password
+```user <name> password <ciphertext/plaintext> <password>```
+
+### Create user
+```user <name> group <administrators/auditors/operators> password <ciphertext/plaintext> <password>```
+
+Default Privilege Levels:
+- admin - 15
+- op - 1
+- audit - 19
+
+[User Group Privileges](https://arubanetworks.com/techdocs/AOS-CX/10.07/HTML/5200-7885/Content/Chp_Mbg_Use/bui-in-use-gro-the-pri-10.htm)
+
+### Delete user
+```no user <name>```
+
+### Show list of existing users
+```show user-list```
+
+### Show existing user-group info
+```show user-group <groupname>```
+
+### Delete user group
+```no user-group <groupname>```
 
 -----------------------------------------------
 
 ## Checkpoints
 
 ### Show existing checkpoints
-context: config
+context: ``config``
 
-``show checkpoint list``
->> CPC20230718050337
-	(CPC yyyy/mm/dd hh:mm:ss)
+```show checkpoint list```
+
+default checkpoint format: ``CPC yyyy/mm/dd hh:mm:ss``
 
 ### Delete specific checkpoint
 ``erase checkpoint <name>``
 
 ### Delete all checkpoints
 ``erase checkpoint all``
-
-------------------------------------------------
-
-## User Management
-context: config
-
-### Change password
-``user <name> password <ciphertext/plaintext> <password>``
-
-### Create user
-``user <name> group <administrators/auditors/operators> password <ciphertext/plaintext> <password>``
-
-	User Group Privileges:
-	https://arubanetworks.com/techdocs/AOS-CX/10.07/HTML/5200-7885/Content/Chp_Mbg_Use/bui-in-use-gro-the-pri-10.htm
-
-	Privilege Level:
-	 admin - 15
-	 op - 1
-	 audit - 19
-
-### Delete user
-``no user <name>``
-
-### Show list of existing users
-``show user-list``
-
-### Show existing user-group info
-``show user-group <groupname>``
->> name, type, included group, number of rules
-
-### Delete user group
-no user-group <groupname>
 
 -------------------------------------------------
 
