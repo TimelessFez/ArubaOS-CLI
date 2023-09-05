@@ -1,4 +1,4 @@
-# Aruba 6100 - Basic Switch Config Commands
+# 4100i, 6000, 6100 Switch Series - Basic Configuration Commands
 ---
 
 ### Common Terminology
