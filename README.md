@@ -197,3 +197,4 @@ https://documentation.meraki.com/General_Administration/Tools_and_Troubleshootin
 
 https://www.n-able.com/blog/vlan-trunking
 
+    AOS-CX-10-08 was used as reference
